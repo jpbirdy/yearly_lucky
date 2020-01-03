@@ -22,19 +22,37 @@
             margin: 0 auto;
             width: 341px;
             height: 108px;
-            margin-top: 100px;
+            margin-top: 50px;
+        }
+
+        .box10 {
+            font-size: 24px;
+            line-height: 110px;
+        }
+        .box3 {
+            font-size: 35px;
+            line-height: 220px;
+        }   
+
+        .box1 {
+            font-size: 90px;
+            line-height: 220px;
         }
 
         .box {
             margin: 0 auto;
             margin-top: 70px;
-            width: 700px;
-            height: 220px;
+            width: 1000px;
+            height: 400px;
             background: url(images/box_bg.png);
-            font-size: 72px;
             text-align: center;
-            line-height: 220px;
+            padding-top: 45px;
+            padding-left: 60px;
+            padding-right: 60px;
+            box-sizing: border-box;
             color: #fff;
+            background-size: contain;
+            background-repeat: no-repeat;
         }
 
         .box span {
@@ -47,7 +65,7 @@
             margin: 0 auto;
             width: 780px;
             height: 100px;
-            margin-top: 150px;
+            margin-top: 10px;
             cursor: pointer;
         }
 
@@ -69,6 +87,10 @@
         .an_botton a:hover {
             opacity: 0.9;
         }
+        .flex {
+            display: flex;
+            justify-content: space-around;
+        }
     </style>
 </head>
 
@@ -76,157 +98,17 @@
 <div class="logo">
     <img src="images/logo.png"/>
 </div>
-<div class="box"><span id="names"></span></div>
+<div class="box" id="box"></div>
 <div class="an_botton">
-    <a class="start" id='start' onclick="getStart()"></a>
-    <a class="end" id='end' onclick="getEnd()"></a>
+    <a class="start" id='start'></a>
+    <a class="end" id='end'></a>
 </div>
+<!-- <script src="./js/name.js"></script> -->
+<!-- <script src="./js/sample.js"></script> -->
+<!-- <!-- <script src="./js/index.js"></script> --> -->
+<script src="./dist/bundle.js"></script>
 <script type="text/javascript">
-    Array.prototype.remove = function (val) {
-        var index = this.indexOf(val);
-        if (index > -1) {
-            this.splice(index, 1);
-        }
-    };
-    let t;
-    let i = 0;
-    let status = 'stop';
-    let names = [
-        '王峰（九卿）',
-'姜其强（问天）',
-'吉元园（吉祥）',
-'汪霞（思言）',
-'孙乐（绍敏）',
-'姚瑶（药师）',
-'穆力嘉（婉清）',
-'王思逸（沅芷）',
-'张超（三丰）',
-'赵一帆（潮生）',
-'虞婵珺（钟灵）',
-'葛维生（吉登）',
-'钱镜洁（秋瑞）',
-'杨珂（小蛮）',
-'杨志军（林升）',
-'谢作伟（百川）',
-'刘凯（大飞）',
-'王渊彬（洪七）',
-'庄方铭（三井）',
-'杨飞（泰来）',
-'顾毅（惜朝）',
-'杨啸（天河）',
-'安文龙（自修）',
-'方旭（士元）',
-'黄冬明（汉升）',
-'姜鹏（伽楼）',
-'董昕頔（白前）',
-'辛伟（扑克）',
-'杨磊（巨石）',
-'李书霞（路飞）',
-'丁发展（千山）',
-'洪康杰（鸿崖）',
-'刘明高（道夫）',
-'王涛（莱斯）',
-'徐得议（金符）',
-'孔庆源（长源）',
-'张宁（曲洋）',
-'熊亮（楚非）',
-'任威文（墨文）',
-'徐焌（奔豚）',
-'司美玉（秋水）',
-'武啸天（宗介）',
-'张程伟（梅清）',
-'汪东琰（河鼓）',
-'陆陈靖（小靖）',
-'燕青浩（燕青）',
-'邹海龙（子越）',
-'王梦晨（梦幻）',
-'黄泽阳（子游）',
-'樊轶伦（思文）',
-'王鹏（玄策）',
-'谭杭波（杭波）',
-'李子健（李白）',
-'晋光峰（光峰）',
-'陈德威（开心）',
-'汪颖（鱼渊）',
-'左道会（子佐）',
-'穆振华（云中）',
-'马利强（思远）',
-'闵聪（奉孝）',
-'刘平（简雪）',
-'汤云飞（辅堂）',
-'刘唤（煜熠）',
-'孙富强（云飞）',
-'郑凯（墨言）',
-'华浩锋（艾斯）',
-'周泽晨（七叶）',
-'张顶飞（子规）',
-'陈向红（梦奇）',
-'沈赞新（雏墨）',
-'颜晨军（索超）',
-'周浩（简捷）',
-'郭会强（子师）',
-'张益铭（北雁）',
-'刘兰（花楹）',
-'张莹（晴空）',
-'高彬（高兴）',
-'刘子杰（子杰）',
-'夏晨成（雨墨）',
-'颜颜（阿青）',
-'华骏伟（瑞克）',
-'张斌涛（元泰）',
-'王晓辉（逸之）',
-'俞凯华（破晓）',
-'徐剑峰（思沃）',
-'王力杰（胡斐）',
-'沙杨（展眉）',
-'李世强（萧峰）',
-'王广志（殇木）',
-'蔡银杰（极光）',
-'朱兰（诺兰）',
-'金尧（格致）',
-'张慧吾（明远）',
-'吴伟鹏（中原）',
-'瞿晓峰（青衣）',
-'姚坤（望海）',
-'杨强（李白）',
-'李涛（木软）',
-'朱俊杰（樱木）',
-'黄斌慧（武文）',
-'王昭娜（月影）',
-'李杨（云海）',
-'陈明锋（风行）',
-'江鑫（白起）',
-'汪凯文（）',
-'周怡（考拉）',
-'张健（汝贤）',
-'邱霞（未漾行）',
-'徐俊杰（子胥）',
-    ];
 
-    function getStart() {
-        clearInterval(t);
-        t = setInterval(function () {
-            i = Math.floor(Math.random() * names.length);
-            document.getElementById("names").innerHTML = names[i];
-
-        }, 30);
-    }
-
-    function getEnd() {
-        clearInterval(t);
-        names.remove(names[i]);
-    }
-
-    document.onkeydown = function (e) {  //对整个页面文档监听
-        var keyNum = window.event ? e.keyCode : e.which;  //获取被按下的键值
-        if (keyNum == 38) {
-            getStart()
-        }
-        if (keyNum == 40) {
-            getEnd()
-        }
-    }
 </script>
 </body>
-
 </html>
